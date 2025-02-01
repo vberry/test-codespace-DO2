@@ -1,9 +1,8 @@
-
-# Description du projet 
-
-Le joueur / la joueuse représente un.e candidat.e ("DO2") à l'entrée dans la formaiton DO. Pour ça, les épreuves sont délicates (examen de dossier, entretien, ...), mais tout.e DO2 peut faire appel à l'esprit de solidarité avec la promo DO3 actuelle. L'objectif du joueur est d'obtenir ce soutien pour favoriser ses chances d'entrer en DO.
+# Règles du jeu
 
 ## Situation initiale
+Le joueur / la joueuse représente un.e candidat.e ("DO2") à l'entrée dans la formaiton DO. Pour ça, les épreuves sont délicates (examen de dossier, entretien, ...), mais tout.e DO2 peut faire appel à l'esprit de solidarité avec la promo DO3 actuelle. L'objectif du joueur est d'obtenir ce soutien pour favoriser ses chances d'entrer en DO.
+
 Lors des JPOs, l'aspirant.e DO2 entre à Polytech Montpellier en rêvant des miracles qu'iel va accomplir grâce à la formation DO. Perdu dans ses rêves, iel reprend ses esprits dans une sallle vide et inconnue de l'école. Les salles de l'école sont organisées suivant un damier de 6 x 6 cases. Dans 15 de ses salles, un.e DO3 est en train de travailler sur un projet qu'il doit rendre bientôt. Il est possible de passer de n'importe quelle salle à une salle adjacente orthogonalement, sous condition (voir ci-dessous)
 
 ## Objectif
@@ -20,6 +19,7 @@ Il s'agit d'un jeu de **devinettes** :
 + chaque porte de communication entre salle a été programmée pour ne s'ouvrir qu'en cas de bonne réponse à une question posée par les serveurs de l'école. Cette question est choisie au hasard parmi une liste de questions disponibles
 + Chaque DO3 rencontré peut donner son parrainage (s'il ne l'a pas déjà accordé à un autre candidat) : mais ce parrainage n'est accordé qu'en cas de bonne réponse à une question
 
+---
 # Version 1
 
 On ne gère pas explicitement les autres candidats pour le moment, mais on gère individuellement les DO3 : 
@@ -112,7 +112,6 @@ Une fois que les premiers tests sont au point, vous avez deux directions vers le
 2. Vous devriez regarder aussi la notion de *test coverage* et mettre en place une façon d'obtenir un rapport sur cette mesure, puis d'indiquer dans le projet les parties non couvertes.
 
 ## Fonctionnalité `BL` (DEV) : backlog
-
 Ajoutez au stockage ce qui est nécessaire pour enregistrer pour chaque question le nombre de fois qu'elle a été posée et le nombre de fois qu'elle a obtenue une bonne réponse. 
 
 Ajoutez aussi le fait que chaque question appartient à un thème : questions sur Git, questions sur Python, ...
@@ -122,3 +121,12 @@ Proposez un programme de *backlog* permettant à l'administrateur du jeu de list
 Le programme backlog doit permettre aussi d'imposer un thème pour les questions des prochaines parties. Pour ça il modifiera un fichier de configuration. Modifiez aussi le code du jeu pour qu'il lise ce fichier de configuraiton au lancement et ne propose ensuite pendant le jeu que des questions de ce thème.
 
 Note : *si la fonctionnalité `B`* a été implémentée, le stockage des infos nécessaires au bakclog se fera dans la base de données mise en place, dont les tables devont donc être complétées (mettez à jour aussi `BD.md`).*
+
+## Fonctionnalité 'W' (DEV) : version web
+
+En utilisant un framework simple (comme `flask`en Python) proposez une version web de ce jeu, dans un premier temps toujours à un seul joueur. Adoptez un design simple, ce qui compte avant tout c'est que le jeu reste jouable. Vous développerez cette fonctionnalité dans une branche séparée de master que vous appellerez `version-web`.
+
+Ensuite au fur et à mesure des explorations du joueur pendant le jeu, vous pouvez afficher la carte des salles explorées par le joueur, pour l'aider à choisir les prochaines directions dans lesquelles il se rendra. 
+
+Ensuite, on peut profiter que toutes les requêtes des joueurs s'adressent au même serveur pour permettre un jeu à plusieurs joueurs. Pour ça gérez le fait que toutes les 15 minutes le serveur démarre une nouvelle partie et permettent aux joueurs qui se connectent juste avant le début de la partie de participer à la prochaine partie (prenez leur nom, affichez un timeout indiquant le nombre de minutes / secondes avant le début de la prochaine partie). Adaptez la logique du jeu pour qu'il gère la position de tous les joueurs de la partie et leur demande les actions qu'ils veulent faire, informez chaque joueur des actions réussies / ratées par les autres joueurs. 
+
