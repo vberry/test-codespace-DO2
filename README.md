@@ -3,6 +3,7 @@
 Aider les DO2 à s'approprier 
 + git
 + les commandes shell (CLI)
+
 Les familiariser à la gestion de projet en équipe :
 + coordination
 + documentation
