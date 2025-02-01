@@ -1,8 +1,15 @@
-# test-replit
-Pour tester si on peut faire un lien facile avec replit 
+# Objectif
 
-Et hop, une petite phrase en plus
+Aider les DO2 à s'approprier 
++ git
++ les commandes shell (CLI)
+Les familiariser à la gestion de projet en équipe :
++ coordination
++ documentation
++ gestion des tâches
++ review de code
 
-Et tac, un truc ajouté par un autre collaborateur (tpdecig), hé hé hé !
+---
+# Où trouver Codespaces : 
+Dans le bouton vert `code` en haut à droite quand regarde le contenu du repo
 
-Et pour finir une autre ligne et tac !
