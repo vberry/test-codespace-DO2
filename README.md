@@ -1,9 +1,11 @@
 # Objectif
 
-Aider les DO2 à s'approprier 
+Aider les candidats à la [formation DO de Polytech Montpellier](https://polytech.umontpellier.fr/formation/cycle-ingenieur/devops) à comprendre de quoi il retourne dans  
 + certains concepts DEVOPS
 + la techno git
 + les commandes shell (CLI)
++ les bases de données
++ une application web
 
 Les familiariser à la gestion de projet en équipe :
 + coordination
@@ -11,6 +13,8 @@ Les familiariser à la gestion de projet en équipe :
 + gestion des tâches
 + review de code
 + cycle de vie du repo
+
+Le tout **par la pratique** comme le plus souvent dans la formation DO
 
 ---
 # Comment démarrer le projet
