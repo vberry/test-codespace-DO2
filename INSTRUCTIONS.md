@@ -7,7 +7,7 @@ Votre objectif à vous, **candidat.e réél.le** à l'entrée en DO, est de prof
 
 ## Contraintes
 
-Ce jeu sera programmé en **Python**, de loin le langage le plus répandu parmi les PeiP (possible de changer si une majorité d'entre vous est d'accord pour un autre langage). En python, votre code ne devra faire appel qu'aux modules de base de Python. L'utilisation d'un package manager ou d'environnements virtuels est donc interdite :wink:) . 
+Ce jeu sera programmé en **Python**, de loin le langage le plus répandu parmi les PeiP (possible de changer si une majorité d'entre vous est d'accord pour un autre langage comme C, C++, Java). En python, votre code ne devra faire appel qu'aux modules de base de Python. L'utilisation d'un package manager ou d'environnements virtuels est donc interdite :wink:) . 
 
 **Toute fonction présente dans le code devra être documentée**
 
