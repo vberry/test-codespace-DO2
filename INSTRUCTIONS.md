@@ -22,3 +22,19 @@ L'intéraction entre les participants au projet est **aussi importante** que le 
 Dans un projet collaboratif comme celui-ci, les modifications du code / ajout de fonctionnalités sont faites sur des branches dédiées, autres que`master`. Une fois qu'ue fonctionnalité est prête, on peut l'intégrer dans `master` en faisant une demande de PR (*pull request*). Cette demande montre d'éventuels conflits de code qui peuvent se produire (si la branche `master` a avancé depuis) et qu'il faut résoudre pour que la fusion soit faite. Une fois les conflits résolus, alors on peut effectuer l'intégration par le bouton "Merge request". Il est conseillé que cette acceptation se fasse par une autre personne du projet, apportant un oeil extérieur à cette demande.
 
 Ce fonctionnement n'est forcément facile à suivre si vous démarrez avec git et/ou github. Faîtes aux mieux pour ne pas être bloqués. Mais gardez à l'esprit qu'il faut essayer de faire que la branche `master` contienne à tout moment une version du projet qui fonctionne. 
+
+## Organisation pour réaliser le projet 
+
+Nous vous proposons les premières étapes suivantes :
+
+1. Phase de conception dans laquelle vous listez les fonctions dont vous allez avoir besoin pour réaliser la version 1 du jeu. Pour chaque fonction :
+  + indiquez en une phrase ou deux son objectif
+  + indiquez et nommez les paramètres qu'elle prend en entrée
+  + indiquez ce qu'elle renvoie
+2. Documentez votre conception : les décisions ci-dessus seront consultables dans un fichier `conception.md` par exemple qui guidera les contributions au projet (et devra être tenu à jour au fur et à mesure des évolutions que vous proposerez). 
+3. Regroupez les fonctions en plusieurs modules (fichiers) de codeet et mettez en place ces fichiers de code contenant chaque fonction prévue, mais ne renvoyant rien d'intéressant pour l'instant (renvoyez une valeur quelconque pour l'instant, mais du type prévu).
+4. Répartissez-vous les foncitons à implémenter et le programme principal.
+
+Une fois la version 1 fonctionnelle, attaquez les fonctionnalités supplémentaires suggérées. 
+
+
