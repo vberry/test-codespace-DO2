@@ -155,6 +155,8 @@ Si le lab de web est bien compris, jouer avec le DOM et utiliser l'api fetch dan
 
 #### Web: version encore plus complexe
 
+Tentez de remplacer Flask par Robyn, FastAPI ou aiohttp.
+
 Dans le lab web avec deno, le front et le back étaient 2 serveurs différents. Vous pouvez séparer front et back, et donc avoir un front avec deno même si le back est en python (attention CORS).
 
 Encore mieux, vous pouvez préparer le cross-platforme multijoueur en réécrivant votre version terminal, plutôt qu'interagir directement avec le "core" auparavant variable global, vous pouvez utiliser le package "requests" pour faire les mêmes requêtes que celles que vous aviez en html/js avec http pour interagir avec le jeu.
