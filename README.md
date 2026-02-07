@@ -1,6 +1,6 @@
 # Objectif
 
-Aider les candidats à la [formation DO de Polytech Montpellier](https://polytech.umontpellier.fr/formation/cycle-ingenieur/devops) à comprendre de quoi il retourne dans  
+Aider les candidats à la [formation DO de Polytech Montpellier](https://www.polytech.umontpellier.fr/formation/cycle-ingenieur/devops) à comprendre de quoi il retourne dans  
 + certains concepts DEVOPS
 + la techno git
 + les commandes shell (CLI)
