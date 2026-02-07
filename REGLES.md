@@ -6,8 +6,8 @@ Le joueur / la joueuse représente un.e candidat.e ("DO2") à l'entrée dans la 
 Lors des JPOs, l'aspirant.e DO2 entre à Polytech Montpellier en rêvant des miracles qu'iel va accomplir grâce à la formation DO. Perdu dans ses rêves, iel reprend ses esprits dans une sallle vide et inconnue de l'école. Les salles de l'école sont organisées suivant un damier de 6 x 6 cases. Dans 15 de ses salles, un.e DO3 est en train de travailler sur un projet qu'il doit rendre bientôt. Il est possible de passer de n'importe quelle salle à une salle adjacente orthogonalement, sous condition (voir ci-dessous)
 
 ## Objectif
-Le but du jeu est de trouver un DO3 et d'obtenir s'on parrainage.
-Mais le joueur / la joueuse pas seul.e à parcourir les salles de Polytech et chaque DO3 ne peut parrainer q'une seule personne ! Plus le temps passe, plus les DO3 ont accepté de parrainer d'autres candidats. 
+Le but du jeu est de trouver un DO3 et d'obtenir son parrainage.
+Mais le joueur / la joueuse n'est pas seul.e à parcourir les salles de Polytech et chaque DO3 ne peut parrainer q'une seule personne ! Plus le temps passe, moins il reste de DO3 pouvant encore parrainer le joueur. 
 + la partie est perdue quand plus aucun DO3 n'est dispo. 
 + elle est gagnée si un DO3 accepte le parrainage.
 
@@ -16,25 +16,25 @@ Le jeu est découpé en tours :
 + si on arrive dans une pièce où se situe un.e DO3 on peut essayer d'obtenir le parrainage.
 
 Il s'agit d'un jeu de **devinettes** :
-+ chaque porte de communication entre salle a été programmée pour ne s'ouvrir qu'en cas de bonne réponse à une question posée par les serveurs de l'école. Cette question est choisie au hasard parmi une liste de questions disponibles
++ chaque porte de communication entre salles a été programmée pour ne s'ouvrir qu'en cas de bonne réponse à une question posée par les serveurs de l'école. Cette question est choisie au hasard parmi une liste de questions disponibles
 + Chaque DO3 rencontré peut donner son parrainage (s'il ne l'a pas déjà accordé à un autre candidat) : mais ce parrainage n'est accordé qu'en cas de bonne réponse à une question
 
 ---
 # Version 1
 
 On ne gère pas explicitement les autres candidats pour le moment, mais on gère individuellement les DO3 : 
-+ initialement ils n'ont pas accepté de parrainage et sont tous dans une salle différente
-+ à chaque tour de jeu chacun.e des DO3 encore libre a une probabilité `p` d'avoir parrainé un autre candidat que le/la joueur/joueuse.
++ initialement aucun n'a encore accepté de parrainage et ils sont chacun dans une salle différente
++ à chaque tour de jeu chacun.e des DO3 encore libre a une probabilité `p` de parrainer un candidat autre que le/la joueur/joueuse.
 
 + Récupérez les noms des DO3 actuels et simulez leur placement dans le jeu
 + Placez le joueur dans une salle aléatoirement
-+ Mettez en place une liste de questions dans un fichier et un module de questions
++ Mettez en place une liste de questions dans un fichier csv et un module Python gérant les questions
 + Mettez en place un module partie qui anime les tours de jeu *tant que* la partie n'est pas finie
-+ Mettez en place un LAUNCHME.md donnant les instructions pour lancer le jeu (qu'on testera surtout sur CodeSpaces)
++ Mettez en place un LAUNCH_ME.md donnant les instructions pour lancer le jeu (qu'on testera surtout sur CodeSpaces)
 
 # Versions suivantes
 
-En fonction de votre motivation et de votre intérêt vous pourrez participer à la mise en place d'autres fonctionnalités détaillées ci-dessous. Ce choix doit se faire en coordination avec les autres développeurs / ou votre référent *accompagnement DO*.
+En fonction de votre motivation et de votre intérêt vous pourrez participer à la mise en place d'autres fonctionnalités détaillées ci-dessous. Ce choix doit se faire en coordination avec les autres développeurs.
 
 ## Fonctionnalité `B` (DEV) : les bonus
 
@@ -45,24 +45,22 @@ Au fur et à mesure du jeu, la joueuse / le joueur peut gagner des badges lui pr
 + le badge *maître des technos* permet d'obtenir deux chances de franchir une porte : en cas de mauvaise réponse à la question permettant de franchir une porte, une deuxième question est posée. 
 + le badge *maître de l'intégration* permet d'obtenir deux chances qu'un.e DO3 encore libre et rencontré accepte de parrainer : en cas d'échec à la première question, iel accepte de poser une deuxième question. Ce badge s'obtient après avoir rencontré un DO3 **et** une DO3.
 
-## Fonctionnalité `D` (DEVOPS) : utilisation d'une base de données
+## Fonctionnalité `D` (DESIGN/DEV/OPS) : utilisation d'une base de données
 
-Mettez en place ce qu'il faut pour que les questions ne soient plus stockées dans un fichier mais soient maintenant dans une base de données. Pour coller au plus près du programme de PeiP suivi par certains d'entre vous, on choisira une base de données relationnelle, et on la manipulera depuis un SGBD `postgres`.
+Mettez en place ce qu'il faut pour que les questions ne soient plus stockées dans un fichier mais soient maintenant dans une base de données. Pour coller au plus près du programme de PeiP suivi par certains d'entre vous, on choisira une base de données relationnelle, et on la manipulera depuis un SGBD de type `postgres`. 
 
 Si la **fonctionnalité `H`** a été implémentée / ou en prévision de cette fonctionnalité, proposez aussi dans la base ce qui est nécessaire pour enregistrer les meilleurs scores.
 
 ### Conception
 
-Vous choisirez conjointement le schéma de la base (tables, champs) et documenterez ce choix dans un fichier `BD.md` 
+Vous choisirez à plusieurs le schéma de la base (tables, champs) et documenterez ce choix dans un fichier `BD.md`, vous pourrez faire un schéma généré par code grâce à *PlantUML* que vous stockerez dans un fichier `db_schema.puml`
 
 ### OPS
-La base de données ne sera pour l'instant pas hébergée en live en permanence sur un site internet dédié, on se limitera à sa génération sur la machine du joueur = l'environnement déployé dans CodeSpaces. 
-
-Explorez les façons de configurer CodeSpaces pour qu'il contienne un serveur de base de données de type `postgres` et que celles-ci puisse être remplie avant le démarrage du jeu. Consultez par exemple [cette page](https://docs.github.com/en/codespaces/setting-up-your-project-for-codespaces/adding-a-dev-container-configuration/setting-up-your-python-project-for-codespaces).
-
-Une fois le fichier de configuration de CodeSpaces mis en place, pour que celui-ci s'active, il vous faudra peut-être supprimer votre CodeSpace actuel (créé sans cette configuration) pour en recréer un disposant de cette capacité de base de données. Ceci ne vous fera pas perdre le contenu de votre projet, stocké indépendamment des CodeSpaces.
-
-Pensez que chaque personne créant un nouveau CodeSpaces depuis ce repo de code aura une BD vide au départ, donc mettez en place ce qui lui permettra d'avoir une BD pleine pour démarrer le jeu.
+La base de données peut être hébergée de plusieurs façons. 
++ Ceci peut être un postgres que vous installez sur votre machine, mais ce ne sera pas pratiques pour les personnes récuérant votre jeu qui devront elles aussi installer et remplir une telle BD. Donc on oublie cette option
++ Ce peut être un postgres proposé en ligne, par exemple *Supabase*, interrogeable par API (donc par programme). C'est la solution la plus simple car les mêmes données seront accessbles à tous les joueurs qui auront récupéré votre code, et ceux-ci n'auront pas de BD à initialiser avant de lancer leur 1ère partie.
++ Enfin, ce peut être par l'intermédiaire de Github *CodeSpaces*, qui pourra être l'environnement représentant la machine de tout joueur. Explorez les façons de configurer CodeSpaces pour qu'il contienne un serveur de BD type `postgres` et que la BD puisse être remplie avant le démarrage du jeu. Consultez par exemple [cette page](https://docs.github.com/en/codespaces/setting-up-your-project-for-codespaces/adding-a-dev-container-configuration/setting-up-your-python-project-for-codespaces).
+Une fois le fichier de configuration de CodeSpaces mis en place, pour l'activer, il faudra peut-être supprimer votre CodeSpace actuel (créé sans cette configuration) et en recréer un disposant de cette capacité de BD. Ceci ne fera pas perdre le contenu de votre projet, stocké indépendamment des CodeSpaces. Pensez que chaque personne créant un nouveau CodeSpaces depuis ce repo de code aura une BD vide au départ, donc vous devrez proposer un script qui lui permettra d'avoir une BD pleine pour démarrer le jeu (indiquez les instructions dans le `LAUNCH_ME.md`.
 
 ### DEV
 pour le jeu, vous mettrez en place les accès à cette base dans un module `BD` utilisé par le module  `questions`.
@@ -99,7 +97,7 @@ Gérez une table des high scores où on enregistre le nom des 10 joueurs ayant m
 
 ## Fonctionnalité `T`(DEVOPS) : les tests et la CI
 
-En entreprise, quand on écrit des fonctions dans n'importe quel langage de programmation, on mets en place des tests unitaires permettant de tester le comportement de chaque fonction. 
+En entreprise, quand on écrit des fonctions dans n'importe quel langage de programmation, on met en place des tests unitaires permettant de tester le comportement de chaque fonction. 
 
 Utilisez le framework `pytest` pour pouvoir implémenter des tests unitaires. Pour cela, il va falloir potentiellement modifier la configuration de votre CodeSpace pour qu'il contienne cet outil. Soit vous trouvez moyen de faire ça automatiquement par les fichiers du dossier `.devcontainer`, soit vous ajoutez ça manuellement dans votre CodeSpace avec l'outil `pip`.
 
@@ -118,13 +116,13 @@ Ajoutez aussi le fait que chaque question appartient à un thème : questions su
 
 Proposez un programme de *backlog* permettant à l'administrateur du jeu de lister les questions par ordre croissant ou décroissant de difficulté (en s'apuyant sur le taux de bonnes réponse)
 
-Le programme backlog doit permettre aussi d'imposer un thème pour les questions des prochaines parties. Pour ça il modifiera un fichier de configuration. Modifiez aussi le code du jeu pour qu'il lise ce fichier de configuraiton au lancement et ne propose ensuite pendant le jeu que des questions de ce thème.
+Le programme *backlog* doit permettre aussi d'imposer un thème pour les questions des prochaines parties. Pour ça il modifiera un fichier de configuration. Modifiez aussi le code du jeu pour qu'il lise ce fichier de configuraiton au lancement et ne propose ensuite pendant le jeu que des questions de ce thème.
 
 Note : *si la fonctionnalité `B`* a été implémentée, le stockage des infos nécessaires au bakclog se fera dans la base de données mise en place, dont les tables devont donc être complétées (mettez à jour aussi `BD.md`).*
 
 ## Fonctionnalité 'W' (DEV) : version web
 
-En utilisant un framework simple (comme `flask`en Python) proposez une version web de ce jeu, dans un premier temps toujours à un seul joueur. Adoptez un design simple, ce qui compte avant tout c'est que le jeu reste jouable. Vous développerez cette fonctionnalité dans une branche séparée de master que vous appellerez `version-web`.
+En utilisant un framework simple (comme `flask`en Python) proposez une version web de ce jeu, dans un premier temps toujours à un seul joueur. Adoptez un design simple, ce qui compte avant tout c'est que le jeu soit jouable. Vous développerez cette fonctionnalité dans une branche séparée de master que vous appellerez `version-web`.
 
 Ensuite au fur et à mesure des explorations du joueur pendant le jeu, vous pouvez afficher la carte des salles explorées par le joueur, pour l'aider à choisir les prochaines directions dans lesquelles il se rendra. 
 
