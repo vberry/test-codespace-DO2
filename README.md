@@ -23,8 +23,8 @@ Il est probable que ce projet serve pendant plusieurs années.
 Chaque année on veut démarrer d'un projet propre : le présent dépôt ne doit donc contenir que l'énoncé et les instructions. 
 
 Donc chaque année : 
-1. faire un fork spécifique de ce dépôt
-2. inviter sur ce fork les participants au projet
+1. les enseignants feront un fork spécifique de ce dépôt
+2. inviteront sur ce fork les participants au projet
 3. ces participants n'auront pas besoin de forker le projet à nouveau, ils peuvent travailler sur des branches différentes ou communes du projet forké. Ceci facilitera la revue de code par exemple
 
 ---
