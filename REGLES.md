@@ -1,5 +1,7 @@
 # Règles du jeu
 
+Lisez entièrement le sujet avant de commencer.
+
 ## Situation initiale
 Le joueur / la joueuse représente un.e candidat.e ("DO2") à l'entrée dans la formaiton DO. Pour ça, les épreuves sont délicates (examen de dossier, entretien, ...), mais tout.e DO2 peut faire appel à l'esprit de solidarité avec la promo DO3 actuelle. L'objectif du joueur est d'obtenir ce soutien pour favoriser ses chances d'entrer en DO.
 
@@ -19,6 +21,7 @@ Il s'agit d'un jeu de **devinettes** :
 + chaque porte de communication entre salles a été programmée pour ne s'ouvrir qu'en cas de bonne réponse à une question posée par les serveurs de l'école. Cette question est choisie au hasard parmi une liste de questions disponibles
 + Chaque DO3 rencontré peut donner son parrainage (s'il ne l'a pas déjà accordé à un autre candidat) : mais ce parrainage n'est accordé qu'en cas de bonne réponse à une question
 
+#### Web: version simple
 ---
 # Version 1
 
@@ -47,7 +50,9 @@ Au fur et à mesure du jeu, la joueuse / le joueur peut gagner des badges lui pr
 
 ## Fonctionnalité `D` (DESIGN/DEV/OPS) : utilisation d'une base de données
 
-Mettez en place ce qu'il faut pour que les questions ne soient plus stockées dans un fichier mais soient maintenant dans une base de données. Pour coller au plus près du programme de PeiP suivi par certains d'entre vous, on choisira une base de données relationnelle, et on la manipulera depuis un SGBD de type `postgres`. 
+Mettez en place ce qu'il faut pour que les questions ne soient plus stockées dans un fichier mais soient maintenant dans une base de données. 
+Pour coller au plus près du programme de PeiP suivi par certains d'entre vous, on choisira une base de données relationnelle 
+(interrogeable par le langage SQL).
 
 Si la **fonctionnalité `H`** a été implémentée / ou en prévision de cette fonctionnalité, proposez aussi dans la base ce qui est nécessaire pour enregistrer les meilleurs scores.
 
@@ -56,10 +61,14 @@ Si la **fonctionnalité `H`** a été implémentée / ou en prévision de cette 
 Vous choisirez à plusieurs le schéma de la base (tables, champs) et documenterez ce choix dans un fichier `BD.md`, vous pourrez faire un schéma généré par code grâce à *PlantUML* que vous stockerez dans un fichier `db_schema.puml`
 
 ### OPS
-La base de données peut être hébergée de plusieurs façons. 
-+ Ceci peut être un postgres que vous installez sur votre machine, mais ce ne sera pas pratiques pour les personnes récuérant votre jeu qui devront elles aussi installer et remplir une telle BD. Donc on oublie cette option
-+ Ce peut être un postgres proposé en ligne, par exemple *Supabase*, interrogeable par API (donc par programme). C'est la solution la plus simple car les mêmes données seront accessbles à tous les joueurs qui auront récupéré votre code, et ceux-ci n'auront pas de BD à initialiser avant de lancer leur 1ère partie. Vous documenterez dans un fichier `DB_API.md` les *routes* mises à dispo par Supabase pour lire et modifier vos données. 
-+ Enfin, ce peut être par l'intermédiaire de Github *CodeSpaces*, qui pourra être l'environnement représentant la machine de tout joueur. Explorez les façons de configurer CodeSpaces pour qu'il contienne un serveur de BD type `postgres` et que la BD puisse être remplie avant le démarrage du jeu. Consultez par exemple [cette page](https://docs.github.com/en/codespaces/setting-up-your-project-for-codespaces/adding-a-dev-container-configuration/setting-up-your-python-project-for-codespaces).
+La base de données peut être hébergée de plusieurs façons. Voici quelques unes à explorer
++ Une solution simple est d'utiliser SQLite: la base est stockée dans un fichier, il est très simple de faire des backup et de retrouver un état fonctionnel, et tout peut se faire en local sur votre machine / votre codespace.
++ Une solution intéressante du point de vue des concepts vus est d'utiliser un postgres proposé en ligne, par exemple *Supabase*, interrogeable par API (donc par programme). 
+C'est une solution permettant que les mêmes données (questions du jeu) soient accessbles à tous les joueurs qui auront récupéré votre code, et ceux-ci n'auront pas de BD à initialiser avant de lancer leur 1ère partie. 
+Vous documenterez dans un fichier `DB_API.md` les *routes* mises à dispo par Supabase pour lire et modifier vos données. 
++ Si vous pensez que vos joueurs récupèreront l'application en faisant un fork (copie) du projet, alors Github *CodeSpaces* (disponible pour vous, et pour eux sur leur copie du projet)
+peut-être configuré pour qu'il contienne un serveur de BD type `postgres` et que la BD puisse être remplie avant le démarrage du jeu. 
+Consultez par exemple [cette page](https://docs.github.com/en/codespaces/setting-up-your-project-for-codespaces/adding-a-dev-container-configuration/setting-up-your-python-project-for-codespaces).
 Une fois le fichier de configuration de CodeSpaces mis en place, pour l'activer, il faudra peut-être supprimer votre CodeSpace actuel (créé sans cette configuration) et en recréer un disposant de cette capacité de BD. Ceci ne fera pas perdre le contenu de votre projet, stocké indépendamment des CodeSpaces. Pensez que chaque personne créant un nouveau CodeSpaces depuis ce repo de code aura une BD vide au départ, donc vous devrez proposer un script qui lui permettra d'avoir une BD pleine pour démarrer le jeu (indiquez les instructions dans le `LAUNCH_ME.md`.
 
 ### DEV
@@ -126,5 +135,34 @@ En utilisant un framework simple (comme `flask`en Python) proposez une version w
 
 Ensuite au fur et à mesure des explorations du joueur pendant le jeu, vous pouvez afficher la carte des salles explorées par le joueur, pour l'aider à choisir les prochaines directions dans lesquelles il se rendra. 
 
-Ensuite, on peut profiter que toutes les requêtes des joueurs s'adressent au même serveur pour permettre un jeu à plusieurs joueurs. Pour ça gérez le fait que toutes les 15 minutes le serveur démarre une nouvelle partie et permettent aux joueurs qui se connectent juste avant le début de la partie de participer à la prochaine partie (prenez leur nom, affichez un timeout indiquant le nombre de minutes / secondes avant le début de la prochaine partie). Adaptez la logique du jeu pour qu'il gère la position de tous les joueurs de la partie et leur demande les actions qu'ils veulent faire, informez chaque joueur des actions réussies / ratées par les autres joueurs. 
+Ensuite, on peut profiter que toutes les requêtes des joueurs s'adressent au même serveur pour permettre un jeu à plusieurs joueurs. Pour ça gérez le fait que toutes les 15 minutes le serveur démarre une nouvelle partie et permettent aux joueurs qui se connectent juste avant le début de la partie de participer à la prochaine partie (prenez leur nom, affichez un timeout indiquant le nombre de minutes / secondes avant le début de la prochaine partie). Adaptez la logique du jeu pour qu'il gère la position de tous les joueurs de la partie et leur demande les actions qu'ils veulent faire, informez chaque joueur des actions réussies / ratées par les autres joueurs.
 
+
+#### Web: version simple
+
+Si vous implémentez un "core" (comme une classe par exemple), sur lequel vous exposez les fonctions (méthodes) du jeu (e.g. def avancer(self, direction): ..), le découpage devient assez simple :
++ Pour votre version en ligne de commande, vous avez un "core" d'initialisé en tant que variable global, et vous bouclez sur des prises d'input et des affichages de grille, en appelant les méthodes du "core" pour effectuer des actions ou récupérer l'état de la grille.
++ Pour votre version web, vous avez un "core" d'initialisé en tant que variable globale ou attribut de l'application web, et ce sont cette fois vos "routes" qui permettent d'interagir avec le core. Pour répondre aux questions, vous pouvez utiliser une route supplémentaire.
+
+Vous pouvez donc utiliser le même core pour ces 2 versions. En termes de software design, votre "core" devient une dépendance. Même pour la version web, vous pouvez très bien avoir une méthode d'affichage sur votre core et n'afficher la grille que dans le terminal. Dans ce cas vous n'avez fait que remplacer les inputs CLI par des requêtes http, mais c'est déjà bien.
+
+
+#### Web: version moins simple
+
+L'affichage dans le terminal, c'est bien, mais vous avez un navigateur. Pour remplacer l'affichage du terminal (que vous pouvez aussi garder comme logs), ajouter une route pour renvoyer du html permettrait d'afficher une grille sur le navigateur. Vous pouvez générer le html directement sous la déclaration de la route. Mais vous allez devoir changer d'url sur le navigateur pour faire des actions et récupérer le rendu.
+
+#### Web: version complexe
+
+L'idéal serait de renvoyer les données de la grille (e.g. en json), plutôt que directement un rendu en html. Vous pouvez créer des routes permettant de renvoyer directement un fichier html, un fichier css, et un fichier js (attention à ce que vos "src" et "href" des balises "script" et "link" matchent bien les routes définies)
+
+Si le lab de web est bien compris, jouer avec le DOM et utiliser l'api fetch dans votre script.js vous permettra, par requêtes http sur les bonnes routes, à effectuer des actions, et récupérer l'état de la grille sous forme de json (et mettre en place des champs pour répondre aux questions).
+
+#### Web: version encore plus complexe
+
+Tentez de remplacer Flask par Robyn, FastAPI ou aiohttp.
+
+Dans le lab web avec deno, le front et le back étaient 2 serveurs différents. Vous pouvez séparer front et back, et donc avoir un front avec deno même si le back est en python (attention CORS).
+
+Encore mieux, vous pouvez préparer le cross-platforme multijoueur en réécrivant votre version terminal, plutôt qu'interagir directement avec le "core" auparavant variable global, vous pouvez utiliser le package "requests" pour faire les mêmes requêtes que celles que vous aviez en html/js avec http pour interagir avec le jeu.
+
+Temps réel : passez en mode websocket pour éliminer l'aspect tour par tour.
