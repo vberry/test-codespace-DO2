@@ -3,7 +3,7 @@
 Lisez entièrement le sujet avant de commencer.
 
 ## Situation initiale
-Le joueur / la joueuse représente un.e candidat.e ("DO2") à l'entrée dans la formaiton DO. Pour ça, les épreuves sont délicates (examen de dossier, entretien, ...), mais tout.e DO2 peut faire appel à l'esprit de solidarité avec la promo DO3 actuelle. L'objectif du joueur est d'obtenir ce soutien pour favoriser ses chances d'entrer en DO.
+Le joueur / la joueuse représente un.e candidat.e ("DO2") à l'entrée dans la formation DO. Pour ça, les épreuves sont délicates (examen de dossier, entretien, ...), mais tout.e DO2 peut faire appel à l'esprit de solidarité avec la promo DO3 actuelle. L'objectif du joueur est d'obtenir ce soutien pour favoriser ses chances d'entrer en DO.
 
 Lors des JPOs, l'aspirant.e DO2 entre à Polytech Montpellier en rêvant des miracles qu'iel va accomplir grâce à la formation DO. Perdu dans ses rêves, iel reprend ses esprits dans une sallle vide et inconnue de l'école. Les salles de l'école sont organisées suivant un damier de 6 x 6 cases. Dans 15 de ses salles, un.e DO3 est en train de travailler sur un projet qu'il doit rendre bientôt. Il est possible de passer de n'importe quelle salle à une salle adjacente orthogonalement, sous condition (voir ci-dessous)
 
@@ -14,7 +14,7 @@ Mais le joueur / la joueuse n'est pas seul.e à parcourir les salles de Polytech
 + elle est gagnée si un DO3 accepte le parrainage.
 
 Le jeu est découpé en tours : 
-+ à chaque tour de jeu on peut se déplacer dans une pièce 
++ à chaque tour de jeu on peut essayer de rejoindre une salle adjacente à la salle actuelle ;
 + si on arrive dans une pièce où se situe un.e DO3 on peut essayer d'obtenir le parrainage.
 
 Il s'agit d'un jeu de **devinettes** :
@@ -30,10 +30,10 @@ On ne gère pas explicitement les autres candidats pour le moment, mais on gère
 + à chaque tour de jeu chacun.e des DO3 encore libre a une probabilité `p` de parrainer un candidat autre que le/la joueur/joueuse.
 
 + Récupérez les noms des DO3 actuels et simulez leur placement dans le jeu
-+ Placez le joueur dans une salle aléatoirement
++ Placez le/la joueur/joueuse dans une salle aléatoirement
 + Mettez en place une liste de questions dans un fichier csv et un module Python gérant les questions
 + Mettez en place un module partie qui anime les tours de jeu *tant que* la partie n'est pas finie
-+ Mettez en place un LAUNCH_ME.md donnant les instructions pour lancer le jeu (qu'on testera surtout sur CodeSpaces)
++ Mettez en place un LAUNCH_ME.md donnant les instructions pour lancer le jeu (qu'on testera surtout sur CodeSpaces).
 
 # Versions suivantes
 
@@ -43,16 +43,14 @@ En fonction de votre motivation et de votre intérêt vous pourrez participer à
 
 Mettez en place des bonus :
 
-Au fur et à mesure du jeu, la joueuse / le joueur peut gagner des badges lui procurant des avantages :
-+ le badge *maître des lieux* peut être gagné en devinant dans quelle pièce iel se situe : coordonnées `x`et `y` : dans ce cas, iel pourra se déplacer deux fois par tour de jeu et ce jusqu'à la fin de la partie.
-+ le badge *maître des technos* permet d'obtenir deux chances de franchir une porte : en cas de mauvaise réponse à la question permettant de franchir une porte, une deuxième question est posée. 
-+ le badge *maître de l'intégration* permet d'obtenir deux chances qu'un.e DO3 encore libre et rencontré accepte de parrainer : en cas d'échec à la première question, iel accepte de poser une deuxième question. Ce badge s'obtient après avoir rencontré un DO3 **et** une DO3.
+Au fur et à mesure du jeu, la joueuse / le joueur peut gagner des badges qu'il trouve dans les salles. Ces badges lui procurent des avantages :
++ le badge *maître des lieux* permet de se déplacer deux fois par tour de jeu et ce jusqu'à la fin de la partie.
++ le badge *maître de l'intégration* permet d'obtenir deux chances de franchir une porte : en cas de mauvaise réponse à la question permettant de franchir une porte, une deuxième question est posée. 
 
 ## Fonctionnalité `D` (DESIGN/DEV/OPS) : utilisation d'une base de données
 
 Mettez en place ce qu'il faut pour que les questions ne soient plus stockées dans un fichier mais soient maintenant dans une base de données. 
-Pour coller au plus près du programme de PeiP suivi par certains d'entre vous, on choisira une base de données relationnelle 
-(interrogeable par le langage SQL).
+Pour coller au plus près du programme de PeiP suivi par certains d'entre vous, on choisira une base de données relationnelle (interrogeable par le langage SQL).
 
 Si la **fonctionnalité `H`** a été implémentée / ou en prévision de cette fonctionnalité, proposez aussi dans la base ce qui est nécessaire pour enregistrer les meilleurs scores.
 
@@ -63,20 +61,20 @@ Vous choisirez à plusieurs le schéma de la base (tables, champs) et documenter
 ### OPS
 La base de données peut être hébergée de plusieurs façons. Voici quelques unes à explorer
 + Une solution simple est d'utiliser SQLite: la base est stockée dans un fichier, il est très simple de faire des backup et de retrouver un état fonctionnel, et tout peut se faire en local sur votre machine / votre codespace.
-+ Une solution intéressante du point de vue des concepts vus est d'utiliser un postgres proposé en ligne, par exemple *Supabase*, interrogeable par API (donc par programme). 
-C'est une solution permettant que les mêmes données (questions du jeu) soient accessbles à tous les joueurs qui auront récupéré votre code, et ceux-ci n'auront pas de BD à initialiser avant de lancer leur 1ère partie. 
++ Une solution intéressante du point de vue des concepts mis en jeu est d'utiliser un postgres proposé en ligne, par exemple *Supabase*, interrogeable par API (donc par programme). 
+C'est une solution permettant que les mêmes données (questions du jeu) soient accessbles à tous les joueurs qui auront récupéré votre code, et ceux-ci n'auront pas de BD à initialiser avant de lancer leur 1ère partie. Mais attention si cette BD est commune à tous les joueurs ;-)
 Vous documenterez dans un fichier `DB_API.md` les *routes* mises à dispo par Supabase pour lire et modifier vos données. 
 + Si vous pensez que vos joueurs récupèreront l'application en faisant un fork (copie) du projet, alors Github *CodeSpaces* (disponible pour vous, et pour eux sur leur copie du projet)
 peut-être configuré pour qu'il contienne un serveur de BD type `postgres` et que la BD puisse être remplie avant le démarrage du jeu. 
 Consultez par exemple [cette page](https://docs.github.com/en/codespaces/setting-up-your-project-for-codespaces/adding-a-dev-container-configuration/setting-up-your-python-project-for-codespaces).
-Une fois le fichier de configuration de CodeSpaces mis en place, pour l'activer, il faudra peut-être supprimer votre CodeSpace actuel (créé sans cette configuration) et en recréer un disposant de cette capacité de BD. Ceci ne fera pas perdre le contenu de votre projet, stocké indépendamment des CodeSpaces. Pensez que chaque personne créant un nouveau CodeSpaces depuis ce repo de code aura une BD vide au départ, donc vous devrez proposer un script qui lui permettra d'avoir une BD pleine pour démarrer le jeu (indiquez les instructions dans le `LAUNCH_ME.md`.
+Une fois le fichier de configuration de CodeSpaces mis en place, pour l'activer, il faudra peut-être supprimer votre CodeSpace actuel (créé sans cette configuration) et en recréer un disposant de cette capacité de BD. Ceci ne fera pas perdre le contenu de votre projet, stocké dans votre repor donc indépendamment des CodeSpaces. Pensez que chaque personne créant un nouveau CodeSpaces depuis ce repo de code aura une BD vide au départ, donc vous devrez proposer un script qui lui permettra de peupler sa BD avant de démarrer les sessions de jeu (indiquez les instructions dans le `LAUNCH_ME.md`).
 
 ### DEV
-pour le jeu, vous mettrez en place les accès à cette base dans un module `BD` utilisé par le module  `questions`.
+pour le jeu, vous mettrez en place les accès à cette base dans un module Python `BD` utilisé par le module  `questions`.
 
 ### DEVOPS
 
-Un programme spécifique permettra de transférer le contenu du fichier texte des questions de la *Version 1* pour remplir la base de données.
+Un programme spécifique permettra de peupler la BD en transférant le contenu du fichier (texte) des questions de la *Version 1* pour remplir la base de données.
 
 
 ## Fonctionnalité `C` (DEV) : simulation des autres candidats
@@ -99,7 +97,7 @@ Celui-ci peut choisir de se déplacer aléatoirement dans toute salle accessible
 
 PLutôt que `gagné`et `perdu` maintenant on veut ajouter un score à chaque partie. Ce score sera basé sur le temps mis pour finir le jeu. 
 
-En fait se déplacer d'une pièce à une autre de l'école pendant les JPO prend du temps : cet événement attire beaucoup de monde et parvenir à changer de pièce prend 15mn. Le jeu démarre à 9h du matin et finit forcément à 17h avec une pause de 12h à 14h.
+En fait se déplacer d'une pièce à une autre de l'école pendant les JPO prend du temps : cet événement attire beaucoup de monde et parvenir à changer de pièce prend 15mn. Le jeu démarre à 9h du matin et finit forcément à 17h avec une pause de 12h à 14h pendant laquelle les DO3 sont partis manger.
 Mettez en place cette nouvelle contrainte et cette façon d'obtenir un `score`. 
 
 Gérez une table des high scores où on enregistre le nom des 10 joueurs ayant mis le moins de temps pour obtenir un parrainage : pour chacun on enregistre à quelle heure il a obtenu son parrainage.
@@ -131,12 +129,16 @@ Note : *si la fonctionnalité `B`* a été implémentée, le stockage des infos 
 
 ## Fonctionnalité 'W' (DEV) : version web
 
-En utilisant un framework simple (comme `flask`en Python) proposez une version web de ce jeu, dans un premier temps toujours à un seul joueur. Adoptez un design simple, ce qui compte avant tout c'est que le jeu soit jouable. Vous développerez cette fonctionnalité dans une branche séparée de master que vous appellerez `version-web`.
+Proposez une version web de ce jeu, dans un premier temps toujours à un seul joueur et toujours au tour par tour. Adoptez un design simple, ce qui compte avant tout c'est que le jeu soit jouable. 
++ Côté backend (serveur de jeu), utilisez un framework simple (comme `flask` en Python) 
++ Côté frontend  (ce qui apparait côté client = navigateur), essayez de n'utiliser que tu HTML/CSS/Js (ne pas utiliser de framework comme VueJS, React, Angular).
++ Vous développerez cette fonctionnalité dans une branche séparée de master que vous appellerez `version-web`. 
 
-Ensuite au fur et à mesure des explorations du joueur pendant le jeu, vous pouvez afficher la carte des salles explorées par le joueur, pour l'aider à choisir les prochaines directions dans lesquelles il se rendra. 
+Dans un premier temps limitez-vous à des affichage textes et des inputs simples.
 
-Ensuite, on peut profiter que toutes les requêtes des joueurs s'adressent au même serveur pour permettre un jeu à plusieurs joueurs. Pour ça gérez le fait que toutes les 15 minutes le serveur démarre une nouvelle partie et permettent aux joueurs qui se connectent juste avant le début de la partie de participer à la prochaine partie (prenez leur nom, affichez un timeout indiquant le nombre de minutes / secondes avant le début de la prochaine partie). Adaptez la logique du jeu pour qu'il gère la position de tous les joueurs de la partie et leur demande les actions qu'ils veulent faire, informez chaque joueur des actions réussies / ratées par les autres joueurs.
+Dans une deuxième étape, vous pourrez afficher la carte des salles explorées par le joueur, pour l'aider à choisir les prochaines directions dans lesquelles il se rendra. 
 
+Ensuite, on peut profiter que toutes les requêtes des joueurs s'adressent au même serveur pour permettre un jeu à plusieurs joueurs. Pour ça gérez le fait que toutes les 20 minutes le serveur démarre une nouvelle partie et permette aux joueurs qui se connectent juste avant le début de la partie de participer à la prochaine partie (prenez leur nom, affichez un timeout indiquant le nombre de minutes / secondes avant le début de la prochaine partie). Adaptez la logique du jeu pour qu'il gère la position de tous les joueurs de la partie et leur demande les actions qu'ils veulent faire, informez chaque joueur des actions réussies / ratées par les autres joueurs. Ajoutez un chat permettan aux joueur de discuter et se troller.
 
 #### Web: version simple
 
@@ -161,8 +163,8 @@ Si le lab de web est bien compris, jouer avec le DOM et utiliser l'api fetch dan
 
 Tentez de remplacer Flask par Robyn, FastAPI ou aiohttp.
 
-Dans le lab web avec deno, le front et le back étaient 2 serveurs différents. Vous pouvez séparer front et back, et donc avoir un front avec deno même si le back est en python (attention CORS).
+Dans le lab web avec deno, le front et le back étaient 2 serveurs différents. Vous pouvez séparer front et back, et donc avoir un front avec deno même si le back est en python (attention aux CORS).
 
-Encore mieux, vous pouvez préparer le cross-platforme multijoueur en réécrivant votre version terminal, plutôt qu'interagir directement avec le "core" auparavant variable global, vous pouvez utiliser le package "requests" pour faire les mêmes requêtes que celles que vous aviez en html/js avec http pour interagir avec le jeu.
+Encore mieux, vous pouvez préparer le cross-platform multijoueurs en réécrivant votre version terminal, plutôt qu'interagir directement avec le "core" auparavant variable globale, vous pouvez utiliser le package "requests" pour faire les mêmes requêtes que celles que vous aviez en html/js avec http pour interagir avec le jeu.
 
 Temps réel : passez en mode websocket pour éliminer l'aspect tour par tour.
